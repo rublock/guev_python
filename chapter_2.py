@@ -61,17 +61,66 @@ print_given(
 
 
 def convert(data):
-    str_lenth = len(data)
-    if (
-        len(list(filter(lambda x: x.isupper() and not x.isdigit(), data)))
-        > str_lenth / 2
-    ):
+    upper = sum(map(str.isupper, data))
+    lower = sum(map(str.islower, data))
+    if upper > lower:
         return data.upper()
-    elif (
-        len(list(filter(lambda x: x.lower() and not x.isdigit(), data)))
-        > str_lenth / 2
-    ):
+    elif upper < lower:
         return data.lower()
+    elif upper == lower:
+        return data.lower()
+    return data
 
 
-print(convert("PI31415!"))
+print(convert("ABCdef"))
+
+##############################################################################
+
+
+def filter_anagrams(word, anagrams):
+    result = []
+    for i in anagrams:
+        if sorted(i) == sorted(word):
+            result.append(i)
+    return result
+
+
+print(filter_anagrams("отсечка", ["сеточка", "стоечка", "тесачок", "чесотка"]))
+
+##############################################################################
+
+
+def likes(name_list):
+    if len(name_list) == 0:
+        return "Никто не оценил данную запись"
+    elif len(name_list) == 1:
+        return f"{name_list[0]} оценил(а) данную запись"
+    elif len(name_list) == 2:
+        return f"{name_list[0]} и {name_list[1]} оценили данную запись"
+    elif len(name_list) == 3:
+        return f"{name_list[0]}, {name_list[1]} и {name_list[2]} оценили данную запись"
+    else:
+        return f"{name_list[0]}, {name_list[1]} и {len(name_list) - 2} других оценили данную запись"
+
+
+print(likes(["Дима", "Алиса"]))
+
+##############################################################################
+
+
+def index_of_nearest(num_list, number):
+    temp_list = []
+    if not num_list:
+        return -1
+    else:
+        for i in num_list:
+            temp_list.append(abs(i - number))
+        min_num = min(temp_list)
+        for j in range(len(temp_list)):
+            if temp_list[j] == min_num:
+                return j
+
+
+print(index_of_nearest([9, 5, 3, 2, 11], 4))
+
+##############################################################################
