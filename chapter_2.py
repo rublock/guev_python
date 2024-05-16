@@ -124,3 +124,32 @@ def index_of_nearest(num_list, number):
 print(index_of_nearest([9, 5, 3, 2, 11], 4))
 
 ##############################################################################
+words = [
+    "Россия",
+    "Австрия",
+    "Австралия",
+    "РумыниЯ",
+    "Украина",
+    "КИТай",
+    "УЗБЕКИСТАН",
+]
+
+
+def spell(*args):
+    lowercase_args = [i.lower() for i in args]
+    temp_arr = []
+    result = {}
+    for i in lowercase_args:
+        first_letter = i[0]
+        for j in lowercase_args:
+            if first_letter == j[0]:
+                temp_arr.append(j)
+        longest_word = max(temp_arr, key=len)
+        longest_word_first_letter = longest_word[0]
+        longest_word_len = len(longest_word)
+        result[longest_word_first_letter] = longest_word_len
+        temp_arr = []
+    return result
+
+
+print(spell(*words))
