@@ -169,3 +169,26 @@ def best_route(d1, d2, d3):
 
 
 print(best_route(10, 10, 45))
+
+##############################################################################
+
+ru_str = "АаВСсЕеНКМОоРрТХху"
+en_str = "AaBCcEeHKMOoPpTXxy"
+
+
+def check_lang(l1, l2, l3):
+    letter_list = [l1, l2, l3]
+    ru_common_elements = list(filter(lambda i: i in letter_list, list(ru_str)))
+    en_common_elements = list(filter(lambda i: i in letter_list, list(en_str)))
+    if len(ru_common_elements) >= 1 and len(en_common_elements) >= 1:
+        result = "mix"
+    elif len(ru_common_elements) >= 1 and len(en_common_elements) == 0:
+        result = "ru"
+    else:
+        result = "en"
+    return result
+
+
+print(check_lang("а", "а", "а"))
+
+##############################################################################
