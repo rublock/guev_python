@@ -55,9 +55,7 @@ def print_given(*args, **kwargs):
         print(f"{key} {value} {type(value)}")
 
 
-print_given(
-    [1, 2, 3, 4], ("a", "b", "c", "d"), name="Timur", age=29, city="Moscow"
-)
+print_given([1, 2, 3, 4], ("a", "b", "c", "d"), name="Timur", age=29, city="Moscow")
 
 
 ##############################################################################
@@ -105,7 +103,9 @@ def likes(name_list):
     elif len(name_list) == 3:
         return f"{name_list[0]}, {name_list[1]} и {name_list[2]} оценили данную запись"
     else:
-        return f"{name_list[0]}, {name_list[1]} и {len(name_list) - 2} других оценили данную запись"
+        return (
+            f"{name_list[0]}, {name_list[1]} и {len(name_list) - 2} других оценили данную запись"
+        )
 
 
 print(likes(["Дима", "Алиса"]))
@@ -192,3 +192,21 @@ def check_lang(l1, l2, l3):
 print(check_lang("а", "а", "а"))
 
 ##############################################################################
+
+data = "9 3 6 5 8"
+data = list(map(int, data.split()))
+x, y, a, b = data[1], data[2], data[3], data[4]
+arr = list(range(1, data[0] + 1))
+arr[x - 1 : y] = reversed(arr[x - 1 : y])
+arr[a - 1 : b] = reversed(arr[a - 1 : b])
+
+result = " ".join(str(num) for num in arr)
+
+print(result)
+
+##############################################################################
+
+arr = [3, 1, 3, 2, 3, 11, 4, 3, 5, 3, 6, 3, 7, 3, 8, 3, 9, 3, 10, 3, 11, 3, 3, 12, 13, 1]
+duplicate_values = sorted(set(x for x in arr if arr.count(x) > 1))
+result = " ".join(map(str, duplicate_values))
+print(result)
